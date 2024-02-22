@@ -1,62 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Survey Instructions</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        header, section, footer {
-            width: 80%; /* or your preferred width */
-            max-width: 960px; /* or your preferred max width */
-        }
-        audio {
-            width: 100%; /* Responsive audio player */
-            max-width: 400px; /* Max size of the audio player */
-        }
-        iframe {
-            border: none;
-            width: 100%;
-            max-width: 640px;
-        }
-        /* Add more styles as needed */
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Welcome to the Survey</h1>
-        <p>Follow the instructions below to participate in the survey.</p>
-    </header>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
 
-    <section id="audio-files">
-        <!-- Audio file 1 -->
-        <h2>Listen to Audio 1</h2>
-        <audio controls>
-            <source src="audio/audio1.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <!-- Link to Google Form for Audio 1 -->
-        <a href="https://your-google-form-link-for-audio-1" target="_blank">Go to Questionnaire for Audio 1</a>
-        
-        <!-- Repeat for each audio file as necessary... -->
-    </section>
+  #audio-files, #google-form, header, footer {
+    width: 80%; /* You can adjust this for your preferred width */
+    max-width: 600px; /* Optional: Sets a max width for larger screens */
+    margin-bottom: 20px;
+  }
 
-    <!-- Optional: Embed Google Form directly -->
-    <section id="google-form">
-        <h2>Survey Form</h2>
-        <iframe src="https://docs.google.com/forms/d/e/your-google-form-id/viewform?embedded=true" width="640" height="800">Loading…</iframe>
-    </section>
+  audio {
+    width: 100%; /* Make audio player take the full width of the container */
+  }
 
-    <footer>
-        <p>Thank you for participating in our survey.</p>
-    </footer>
-
-</body>
-</html>
+  iframe {
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    border: none; /* Removes the default iframe border */
+  }
+</style>
