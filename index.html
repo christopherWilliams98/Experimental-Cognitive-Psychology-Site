@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Survey Instructions</title>
-    <!-- Add your CSS styling here or link to an external stylesheet -->
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        header, section, footer {
+            width: 80%; /* or your preferred width */
+            max-width: 960px; /* or your preferred max width */
+        }
+        audio {
+            width: 100%; /* Responsive audio player */
+            max-width: 400px; /* Max size of the audio player */
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            max-width: 640px;
+        }
+        /* Add more styles as needed */
+    </style>
 </head>
 <body>
     <header>
@@ -27,7 +51,7 @@
     <!-- Optional: Embed Google Form directly -->
     <section id="google-form">
         <h2>Survey Form</h2>
-        <iframe src="https://docs.google.com/forms/d/e/your-google-form-id/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <iframe src="https://docs.google.com/forms/d/e/your-google-form-id/viewform?embedded=true" width="640" height="800">Loading…</iframe>
     </section>
 
     <footer>
