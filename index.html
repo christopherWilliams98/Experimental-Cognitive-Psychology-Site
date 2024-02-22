@@ -2,9 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Embed Test</title>
+    <title>Survey Instructions</title>
+    <style>
+        /* CSS styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        header, section, footer {
+            width: 80%; /* Adjust width as needed */
+            max-width: 600px; /* Maximum width of the content */
+            margin-bottom: 20px; /* Space between sections */
+        }
+        audio {
+            width: 100%; /* Audio player takes the full width of its container */
+            max-width: 400px; /* Maximum size of the audio player */
+        }
+        iframe {
+            width: 100%; /* iFrame takes the full width of its container */
+            height: 776px; /* Adjust height as needed */
+            border: none; /* Removes the default iframe border */
+        }
+        a {
+            display: block;
+            margin: 10px 0; /* Space above and below the link */
+            text-decoration: none; /* Optional: removes underline from links */
+            color: #0000EE; /* Standard link color */
+        }
+    </style>
 </head>
 <body>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" width="640" height="776"></iframe>
+    <header>
+        <h1>Welcome to the Survey</h1>
+        <p>Follow the instructions below to participate in the survey.</p>
+    </header>
+
+    <section id="audio-files">
+        <!-- Audio file 1 -->
+        <h2>Listen to Audio 1</h2>
+        <audio controls>
+            <source src="audio/audio1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" target="_blank">Go to Questionnaire for Audio 1</a>
+    </section>
+
+    <section id="google-form">
+        <h2>Survey Form</h2>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true"></iframe>
+
+    </section>
+
+    <footer>
+        <p>Thank you for participating in our survey.</p>
+    </footer>
+
 </body>
 </html>
