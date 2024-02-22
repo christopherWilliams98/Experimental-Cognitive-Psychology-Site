@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Survey Instructions</title>
     <style>
+        /* CSS styles */
         body, html {
             margin: 0;
             padding: 0;
@@ -15,33 +16,26 @@
             flex-direction: column;
             text-align: center;
         }
-
         header, section, footer {
             width: 80%; /* Adjust width as needed */
             max-width: 600px; /* Maximum width of the content */
             margin-bottom: 20px; /* Space between sections */
         }
-
         audio {
             width: 100%; /* Audio player takes the full width of its container */
             max-width: 400px; /* Maximum size of the audio player */
         }
-
         iframe {
             width: 100%; /* iFrame takes the full width of its container */
             height: 776px; /* Adjust height as needed */
             border: none; /* Removes the default iframe border */
         }
-        
-        /* Ensure links are also centered and block-level for better click area */
         a {
             display: block;
             margin: 10px 0; /* Space above and below the link */
             text-decoration: none; /* Optional: removes underline from links */
             color: #0000EE; /* Standard link color */
         }
-
-        /* Add more styles as needed */
     </style>
 </head>
 <body>
@@ -57,13 +51,9 @@
             <source src="audio/audio1.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
-        <!-- Link to Google Form for Audio 1 -->
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" target="_blank">Go to Questionnaire for Audio 1</a>
-        
-        <!-- Repeat for each audio file as necessary... -->
     </section>
 
-    <!-- Embed Google Form directly -->
     <section id="google-form">
         <h2>Survey Form</h2>
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" width="640" height="776" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
