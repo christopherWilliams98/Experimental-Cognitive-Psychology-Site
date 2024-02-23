@@ -103,6 +103,22 @@
             border-radius: 4px;
         }
 
+        /* Style for Previous and Next buttons */
+        #prev-button, #next-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #prev-button:disabled, #next-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
     </style>
 </head>
 <body>
@@ -139,15 +155,18 @@
 
     <main class="container">
         <section id="audio-files">
-            <h2>Listen to Audio 1</h2>
+            <h2 id="audio-title">Listen to Audio 1</h2>
             <div class="speaker-info">
-                <img src="Resources/1.png" alt="Speaker Information">
+                <img id="speaker-image" src="Resources/0.png" alt="Speaker Information">
             </div>
-            <audio controls>
-                <source src="Resources/1.mp3" type="audio/mpeg">
+            <button id="prev-button">Previous</button>
+            <audio id="audio-player" controls>
+                <source id="audio-source" src="Resources/0.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+            <button id="next-button">Next</button>
         </section>
+        
     </main>
 
     <div class="iframe-container">
@@ -183,6 +202,53 @@
             var copyButton = document.getElementById('copy-button');
             copyButton.addEventListener('click', copyToClipboard);
         });
+
+    // New script for handling audio navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize variables
+        var currentIndex = 0;
+        var totalAudioFiles = 8; // Total number of audio files
+        var audioTitle = document.getElementById('audio-title');
+        var audioPlayer = document.getElementById('audio-player');
+        var audioSource = document.getElementById('audio-source');
+        var speakerImage = document.getElementById('speaker-image');
+        var prevButton = document.getElementById('prev-button');
+        var nextButton = document.getElementById('next-button');
+
+        // Disable the prev button initially
+        prevButton.disabled = true;
+
+        // Function to update the audio player and speaker image
+        function updateAudioPlayer(index) {
+            audioSource.src = 'Resources/' + index + '.mp3';
+            speakerImage.src = 'Resources/' + index + '.png';
+            audioTitle.textContent = 'Listen to Audio ' + (index + 1);
+            audioPlayer.load(); // Load the new audio source
+        }
+
+        // Event listeners for buttons
+        prevButton.addEventListener('click', function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateAudioPlayer(currentIndex);
+            }
+            nextButton.disabled = false;
+            if (currentIndex === 0) {
+                this.disabled = true;
+            }
+        });
+
+        nextButton.addEventListener('click', function() {
+            if (currentIndex < totalAudioFiles - 1) {
+                currentIndex++;
+                updateAudioPlayer(currentIndex);
+            }
+            prevButton.disabled = false;
+            if (currentIndex === totalAudioFiles - 1) {
+                this.disabled = true;
+            }
+        });
+    });
     </script>
 
 </body>
