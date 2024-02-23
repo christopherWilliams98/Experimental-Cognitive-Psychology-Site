@@ -143,6 +143,16 @@
             gap: 10px;
             margin-top: 20px; /* Adds some space between the speaker-info and the audio controls */
         }
+        /* Style for introduction section */
+        .introduction {
+            background-color: #f0f0f0; /* Slightly different background for contrast */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 700px; /* Adjust as needed for your design */
+        }
 
 /* Adjustments for audio control to fit with the buttons */
 audio {
@@ -154,7 +164,12 @@ audio {
 <body>
 
     <header class="container">
-        <h1>Welcome to the lie detection survey!</h1>
+
+        <!-- Introduction Section -->
+        <div class="container introduction">
+            <h2>Welcome to the Lie Detection Survey</h2>
+            <p>In this experiment, you will listen to eight statements from different individuals. Among these, four are truths and four are lies, presented in no specific order. Your objective is to discern the lies from the truths. Please follow the instructions below and make sure to submit your answers through the provided form.</p>
+        </div>
 
         <div class="instructions">
             <p>Welcome to our survey. Please carefully read and follow the instructions below to ensure your participation is recorded correctly:</p>
