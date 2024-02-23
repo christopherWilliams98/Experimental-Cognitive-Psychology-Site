@@ -85,6 +85,24 @@
             font-weight: bold;
         }
 
+        .speaker-info {
+            background-color: #fff; /* White background */
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            text-align: center;
+            width: 80%;
+            max-width: 300px; /* Adjust as needed */
+            font-size: 0.9em;
+        }
+
+        .speaker-info img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
     </style>
 </head>
 <body>
@@ -122,6 +140,9 @@
     <main class="container">
         <section id="audio-files">
             <h2>Listen to Audio 1</h2>
+            <div class="speaker-info">
+                <img src="Resources/1.png" alt="Speaker Information">
+            </div>
             <audio controls>
                 <source src="Resources/1.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
