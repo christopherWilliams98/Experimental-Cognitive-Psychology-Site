@@ -32,17 +32,17 @@
         }
 
         .iframe-container {
-            width: 100%;
-            height: 2000px;
-            max-width: 640px;
-            margin: 0 auto;
-        }
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    overflow: hidden; /* This will remove the scrollbar if the iframe fits */
+}
 
-        iframe {
-            width: 100%;
-            height: 776px; /* Adjust as necessary */
-            border: 0;
-        }
+.iframe-container iframe {
+    width: 100%;
+    min-height: 1200px; /* You can adjust this value as needed */
+    border: none;
+}
 
         ol {
             text-align: left;
@@ -146,7 +146,7 @@
         }
         /* Style for introduction section */
         .introduction {
-            background-color: #f0f0f0; /* Slightly different background for contrast */
+            background-color: #f9f9f9; /* Light grey background */
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
@@ -155,10 +155,10 @@
             max-width: 700px; /* Adjust as needed for your design */
         }
 
-/* Adjustments for audio control to fit with the buttons */
-audio {
-    margin: 0 15px; /* Add margin to give space between buttons and audio control */
-}
+        /* Adjustments for audio control to fit with the buttons */
+        audio {
+            margin: 0 15px; /* Add margin to give space between buttons and audio control */
+        }
 
     </style>
 </head>
@@ -218,7 +218,7 @@ audio {
     </main>
 
     <div class="iframe-container">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" width="640" height="2000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>    </div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
     <script>
         // Function to shuffle an array
