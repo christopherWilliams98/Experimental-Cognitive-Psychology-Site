@@ -206,77 +206,57 @@ audio {
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>    </div>
 
     <script>
-        // Function to shuffle an array (to be used for generating the session key)
+        // Function to shuffle an array
         function shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
+            // While there remain elements to shuffle...
             while (0 !== currentIndex) {
+                // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex -= 1;
+                // And swap it with the current element.
                 temporaryValue = array[currentIndex];
                 array[currentIndex] = array[randomIndex];
                 array[randomIndex] = temporaryValue;
             }
             return array;
         }
-
-        // Function to generate a random session key and set it
-        function generateSessionKey() {
-            var numbers = [0, 1, 2, 3, 4, 5, 6, 7]; // Array of audio file indices
-            return shuffle(numbers);
-        }
-
-        // Function to copy the session key to the clipboard
-        function copyToClipboard() {
-            var sessionKey = document.getElementById('session-key').innerText;
-            navigator.clipboard.writeText(sessionKey).then(function() {
-                // Success message
-                alert('Session key copied to clipboard!');
-            }, function(err) {
-                // Error message
-                alert('Error copying the session key. Please try again.');
-            });
-        }
-
-        // On page load, set the session key and the initial audio player
+    
+        // On page load
         document.addEventListener('DOMContentLoaded', function() {
-            var sessionKey = generateSessionKey();
-            var sessionKeyElement = document.getElementById('session-key');
-            var audioTitle = document.getElementById('audio-title');
-            var speakerImage = document.getElementById('speaker-image');
-            var audioSource = document.getElementById('audio-source');
-            var currentIndex = 0; // Start at the first audio file
-
-            // Update the session key display
-            sessionKeyElement.innerText = sessionKey.join('');
-
-            // Function to update the audio player and speaker image
-            function updateAudioPlayer(index) {
-                var audioIndex = sessionKey[index]; // Get the correct index from the session key
-                audioSource.src = 'Resources/' + audioIndex + '.mp3';
-                speakerImage.src = 'Resources/' + audioIndex + '.png';
-                audioTitle.textContent = 'Listen to Audio ' + (index + 1);
-                audioPlayer.load(); // Load the new audio source
-            }
-
-            // Initially set the audio player and speaker image
-            updateAudioPlayer(currentIndex);
-
-            // Event listeners for next and previous buttons
+            var audioSequence = shuffle([1, 2, 3, 4, 5, 6, 7, 8]);
+            var audioIndex = 0; // This will be used to iterate over the audioSequence array
+    
+            document.getElementById('session-key').textContent = audioSequence.join('');
+            document.getElementById('audio-title').textContent = 'Listen to Audio ' + (audioIndex + 1);
+            document.getElementById('audio-source').src = 'Resources/' + (audioSequence[audioIndex] - 1) + '.mp3';
+            document.getElementById('speaker-image').src = 'Resources/' + (audioSequence[audioIndex] - 1) + '.png';
+            document.getElementById('audio-player').load();
+    
+            // Update audio when the "Next" button is clicked
             document.getElementById('next-button').addEventListener('click', function() {
-                if (currentIndex < sessionKey.length - 1) {
-                    currentIndex++;
-                    updateAudioPlayer(currentIndex);
+                if (audioIndex < audioSequence.length - 1) {
+                    audioIndex++;
+                    document.getElementById('audio-title').textContent = 'Listen to Audio ' + (audioIndex + 1);
+                    document.getElementById('audio-source').src = 'Resources/' + (audioSequence[audioIndex] - 1) + '.mp3';
+                    document.getElementById('speaker-image').src = 'Resources/' + (audioSequence[audioIndex] - 1) + '.png';
+                    document.getElementById('audio-player').load();
                 }
             });
-
+    
+            // Update audio when the "Previous" button is clicked
             document.getElementById('prev-button').addEventListener('click', function() {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    updateAudioPlayer(currentIndex);
+                if (audioIndex > 0) {
+                    audioIndex--;
+                    document.getElementById('audio-title').textContent = 'Listen to Audio ' + (audioIndex + 1);
+                    document.getElementById('audio-source').src = 'Resources/' + (audioSequence[audioIndex] - 1) + '.mp3';
+                    document.getElementById('speaker-image').src = 'Resources/' + (audioSequence[audioIndex] - 1) + '.png';
+                    document.getElementById('audio-player').load();
                 }
             });
         });
     </script>
+        
 
 </body>
 </html>
