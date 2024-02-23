@@ -66,6 +66,25 @@
             border: none;
             border-radius: 5px;
         }
+
+        #session-key-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        #session-key-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -92,9 +111,11 @@
             <p>Thank you for your time and valuable input. Your participation is greatly appreciated!</p>
         </div>
         <!-- Session key section -->
-        <div id="session-key-container">
+        <div id="session-key-box">
+            <span id="session-key-label">Your Session Key:</span>
             <span id="session-key"></span>
             <button id="copy-button">Copy</button>
+            <p>Remember to copy and paste your session key into the form below.</p>
         </div>
     </header>
 
