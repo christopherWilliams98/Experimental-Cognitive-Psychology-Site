@@ -4,8 +4,43 @@
     <meta charset="UTF-8">
     <title>Truth or Lie Survey Instructions</title>
     <style>
-        /* Existing styles... */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
 
+        header, section, footer {
+            width: 80%; /* Adjust width as needed */
+            max-width: 600px; /* Maximum width of the content */
+            margin-bottom: 20px; /* Space between sections */
+        }
+
+        audio {
+            width: 100%; /* Audio player takes the full width of its container */
+            max-width: 400px; /* Maximum size of the audio player */
+        }
+
+        iframe {
+            width: 100%; /* iFrame takes the full width of its container */
+            height: 776px; /* Adjust height as needed */
+            border: none; /* Removes the default iframe border */
+        }
+        
+        /* Ensure links are also centered and block-level for better click area */
+        a {
+            display: block;
+            margin: 10px 0; /* Space above and below the link */
+            text-decoration: none; /* Optional: removes underline from links */
+            color: #0000EE; /* Standard link color */
+        }
+        /* Added styles for session key and copy button */
         #session-key {
             font-weight: bold;
             margin: 10px 0;
@@ -24,92 +59,71 @@
             border: none;
             border-radius: 5px;
         }
-
-        /* Additional styles... */
     </style>
 </head>
 <body>
 
     <header class="container">
         <h1>Welcome to the Truth or Lie Survey</h1>
-<p>Please follow the detailed instructions below to ensure your effective participation in our survey.</p>
-
-        
-        <!-- Session Key Display -->
+        <!-- Instruction content -->
+        <div class="instructions">
+            <p>Welcome to our survey. Please carefully read and follow the instructions below to ensure your participation is recorded correctly:</p>
+            <ol>
+                <li><strong>Read All Instructions</strong>: Before you begin, please ensure you read through all the instructions provided here to understand the survey process fully.</li>
+                <li><strong>Session Key</strong>: Locate your unique session key provided below. You will need this to complete the survey. To copy it:
+                    <ul>
+                        <li>Select the key and press <code>Ctrl + C</code> (or <code>Cmd + C</code> on Mac) to copy it to your clipboard.</li>
+                        <li>Alternatively, you can click the "Copy" button next to the session key.</li>
+                    </ul>
+                </li>
+                <li><strong>Enter Personal Details</strong>: Scroll down to the survey section and enter your personal details on the first page of the survey form. Click "Next" to proceed.</li>
+                <li><strong>Listen to Audio Clips</strong>: You will find audio clips labeled (e.g., "Audio 1", "Audio 2", etc.). Please listen to each clip in order by pressing the "Play" button.</li>
+                <li><strong>Answer Questions</strong>: After listening to each audio clip, answer the corresponding question about the clip in the survey. Once you have answered, click "Next" to move on to the next audio clip and set of questions.</li>
+                <li><strong>Complete All Sections</strong>: Continue this process for all audio clips provided. Your responses are crucial, so please ensure you listen to each clip entirely before answering the related questions.</li>
+                <li><strong>Finalize</strong>: After responding to all questions about the audio clips, follow any final instructions to complete your survey participation.</li>
+            </ol>
+            <p>Thank you for your time and valuable input. Your participation is greatly appreciated!</p>
+        </div>
+        <!-- Session key section -->
         <div id="session-key-container">
             <span id="session-key"></span>
-            <button id="copy-button" onclick="copySessionKey()">Copy Key</button>
+            <button id="copy-button">Copy Key</button>
         </div>
-
-        <p>Welcome to our survey. Please carefully read and follow the instructions below to ensure your participation is recorded correctly:</p>
-<ol>
-    <li><strong>Read All Instructions</strong>: Before you begin, please ensure you read through all the instructions provided here to understand the survey process fully.</li>
-    <li><strong>Session Key</strong>: Locate your unique session key provided below. You will need this to complete the survey. To copy it:
-        <ul>
-            <li>Select the key and press <code>Ctrl + C</code> (or <code>Cmd + C</code> on Mac) to copy it to your clipboard.</li>
-            <li>Alternatively, you can click the "Copy" button next to the session key.</li>
-        </ul>
-    </li>
-    <li><strong>Enter Personal Details</strong>: Scroll down to the survey section and enter your personal details on the first page of the survey form. Click "Next" to proceed.</li>
-    <li><strong>Listen to Audio Clips</strong>: You will find audio clips labeled (e.g., "Audio 1", "Audio 2", etc.). Please listen to each clip in order by pressing the "Play" button.</li>
-    <li><strong>Answer Questions</strong>: After listening to each audio clip, answer the corresponding question about the clip in the survey. Once you have answered, click "Next" to move on to the next audio clip and set of questions.</li>
-    <li><strong>Complete All Sections</strong>: Continue this process for all audio clips provided. Your responses are crucial, so please ensure you listen to each clip entirely before answering the related questions.</li>
-    <li><strong>Finalize</strong>: After responding to all questions about the audio clips, follow any final instructions to complete your survey participation.</li>
-</ol>
-<p>Thank you for your time and valuable input. Your participation is greatly appreciated!</p>
-
     </header>
 
-    <main class="container">
-        <!-- Audio and survey content... -->
-    </main>
-
-    <!-- Rest of your HTML content... -->
+    <!-- Existing content... -->
+    <!-- ... -->
 
     <script>
-        // Function to shuffle an array
-        function shuffle(array) {
-            let currentIndex = array.length,  randomIndex;
-
-            // While there remain elements to shuffle...
-            while (currentIndex != 0) {
-
-                // Pick a remaining element...
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-
-                // And swap it with the current element.
-                [array[currentIndex], array[randomIndex]] = [
-                    array[randomIndex], array[currentIndex]];
-            }
-
-            return array;
-        }
-
-        // Function to generate a random session key
+        // Function to generate a random session key and set it
         function generateSessionKey() {
-            const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
-            const shuffledNumbers = shuffle(numbers);
-            return shuffledNumbers.join('');
+            var numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+            numbers.sort(function() {
+                return 0.5 - Math.random();
+            });
+            return numbers.join('');
         }
 
-        // Function to copy session key to clipboard
-        function copySessionKey() {
-            const sessionKey = document.getElementById('session-key');
-            navigator.clipboard.writeText(sessionKey.textContent)
-                .then(() => {
-                    // Success feedback
-                    alert('Session key copied to clipboard!');
-                })
-                .catch(err => {
-                    console.error('Error copying text: ', err);
-                });
+        // Function to copy the session key to the clipboard
+        function copyToClipboard() {
+            var sessionKey = document.getElementById('session-key').innerText;
+            navigator.clipboard.writeText(sessionKey).then(function() {
+                // Success message
+                alert('Session key copied to clipboard!');
+            }, function(err) {
+                // Error message
+                alert('Error copying the session key. Please try again.');
+            });
         }
 
-        // On page load, set the session key
-        window.onload = function() {
-            document.getElementById('session-key').textContent = generateSessionKey();
-        };
+        // Set the session key on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            var sessionKeyElement = document.getElementById('session-key');
+            sessionKeyElement.innerText = generateSessionKey();
+            
+            var copyButton = document.getElementById('copy-button');
+            copyButton.addEventListener('click', copyToClipboard);
+        });
     </script>
 
 </body>
