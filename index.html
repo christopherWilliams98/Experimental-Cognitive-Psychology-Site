@@ -11,7 +11,7 @@
             width: 100%;
             font-family: Arial, sans-serif;
         }
-    
+
         /* Section specific styles */
         .container {
             display: flex;
@@ -20,69 +20,89 @@
             text-align: center;
             margin-bottom: 20px;
         }
-    
-        .instructions, .info-box {
-            background-color: #f9f9f9;
+
+        .instructions {
+            background-color: #f9f9f9; /* Light grey background */
             margin: 20px auto;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 800px; /* Maximum width for instructions and session key */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            width: 80%; /* Responsive width */
+            max-width: 800px; /* Maximum width */
         }
-    
+
         .iframe-container {
             width: 100%;
             max-width: 640px;
             margin: 0 auto;
         }
-    
+
         iframe {
             width: 100%;
-            height: 776px;
+            height: 776px; /* Adjust as necessary */
             border: 0;
         }
-    
+
         ol {
             text-align: left;
         }
-    
-        #session-key, #copy-button {
+
+        /* Added styles for session key and copy button */
+        #session-key {
             font-weight: bold;
+            margin: 10px 0;
             padding: 10px;
-            margin-top: 10px;
+            background-color: #e7e7e7;
+            display: inline-block;
+            border: 1px solid #ccc;
         }
-    
+
         #copy-button {
             cursor: pointer;
+            padding: 10px;
+            margin-left: 10px;
             background-color: #673b03;
             color: white;
             border: none;
             border-radius: 5px;
         }
-    
-        .speaker-info {
-            margin: 20px auto;
+
+        #session-key-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            font-size: 0.9em;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        #session-key-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
             font-weight: bold;
         }
-    
-        .speaker-info-box {
-            background-color: #fff;
+
+        .speaker-info {
+            background-color: #fff; /* White background */
             padding: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin: 20px auto;
+            text-align: center;
             width: 80%;
             max-width: 300px; /* Adjust as needed */
+            font-size: 0.9em;
         }
-    
+
         .speaker-info img {
             max-width: 100%;
             height: auto;
             border-radius: 4px;
         }
+
     </style>
 </head>
 <body>
@@ -120,15 +140,13 @@
     <main class="container">
         <section id="audio-files">
             <h2>Listen to Audio 1</h2>
-            <div class="speaker-info-box">
-                <div class="info-box speaker-info-box">
-                    <img src="Resources/1.png" alt="Speaker Information">
-                </div>
-                <audio controls>
-                    <source src="Resources/1.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+            <div class="speaker-info">
+                <img src="Resources/1.png" alt="Speaker Information">
             </div>
+            <audio controls>
+                <source src="Resources/1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </section>
     </main>
 
