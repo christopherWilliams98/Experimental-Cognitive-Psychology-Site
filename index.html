@@ -147,6 +147,7 @@
             var sessionKey = document.getElementById('session-key').innerText;
             navigator.clipboard.writeText(sessionKey).then(function() {
                 // Success message
+                alert('Session key copied to clipboard!');
             }, function(err) {
                 // Error message
                 alert('Error copying the session key. Please try again.');
