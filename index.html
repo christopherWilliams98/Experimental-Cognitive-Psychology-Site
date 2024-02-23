@@ -160,17 +160,29 @@
             margin: 0 15px; /* Add margin to give space between buttons and audio control */
         }
 
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container, .introduction, .instructions, .audio-container {
+                width: 95%; /* Full width with a little margin on mobile */
+                max-width: none; /* Allow it to stretch on smaller screens */
+            }
+
+            .audio-nav-container button {
+                padding: 8px 16px; /* Slightly smaller buttons on mobile */
+            }
+        }
+
     </style>
 </head>
 <body>
 
     <header class="container">
 
-        <!-- Introduction Section -->
-        <div class="container introduction">
-            <h2>Welcome to the Lie Detection Survey</h2>
-            <p>In this experiment, you will listen to eight statements from different individuals. Among these, four are truths and four are lies, presented in no specific order. Your objective is to discern the lies from the truths. Please follow the instructions below and make sure to submit your answers through the provided form.</p>
-        </div>
+    <!-- Introduction Section -->
+    <div class="container introduction">
+        <h2>Welcome to the Lie Detection Survey</h2>
+        <p>You will listen to eight statements by different speakers. Your task is to determine which statements are true and which are false. Please pay close attention to each statement and complete the survey accordingly.</p>
+    </div>
 
         <div class="instructions">
             <p>Please carefully read and follow the instructions below to ensure your participation is recorded correctly:</p>
