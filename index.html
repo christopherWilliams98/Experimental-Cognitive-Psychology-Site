@@ -249,13 +249,13 @@
                 // Mappings for speaker codes to gender and country
                 const speakerMapping = {
                     a: 'FF', // Female, French
-                    b: 'MF', // Male, French
-                    c: 'FS', // Female, Spanish
-                    d: 'MS', // Male, Spanish
-                    e: 'FC', // Female, Canadian
-                    f: 'MC', // Male, Canadian
-                    g: 'FM', // Female, American
-                    h: 'MM'  // Male, American
+                    b: 'FM', // Male, French
+                    c: 'SF', // swiss female
+                    d: 'SM', // swiss male
+                    e: 'CF', // chinese female
+                    f: 'CM', // chinese male
+                    g: 'MF', // Morrocan female
+                    h: 'MM'  // Morrocan male
                 };
         
                 // Generate random session key for texts and speakers
@@ -279,7 +279,7 @@
                     var audioTitle = document.getElementById('audio-title');
         
                     audioSource.src = `Resources/${audioFileName}`;
-                    speakerImage.src = `Resources/${currentSpeakerChar}.png`; // Update if you have specific images per speaker
+                    speakerImage.src = `Resources/${speakerCode}.png`;
                     audioTitle.textContent = `Listen to Audio ${audioIndex + 1}`;
         
                     var audioPlayer = document.getElementById('audio-player');
