@@ -232,91 +232,94 @@
     <div class="iframe-container">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScK6IVbqYyfe16CQ4vuYzMZU9tRI-hDXj2UXd88Yw2r5S7i4Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
-    <script>
-        // Function to shuffle an array
-        function shuffle(array) {
-            var currentIndex = array.length, temporaryValue, randomIndex;
-            // While there remain elements to shuffle...
-            while (currentIndex !== 0) {
-                // Pick a remaining element...
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex -= 1;
-                // And swap it with the current element.
-                temporaryValue = array[currentIndex];
-                array[currentIndex] = array[randomIndex];
-                array[randomIndex] = temporaryValue;
+        <script>
+            function shuffle(array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+                while (currentIndex !== 0) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+                return array;
             }
-            return array;
-        }
-    
-        // Function to copy the session key to the clipboard
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                // Success message
-                alert('Session key copied to clipboard!');
-            }, function(err) {
-                // Error message
-                alert('Error copying the session key. Please try again.');
-            });
-        }
-    
-        // On page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var audioSequence = shuffle([0, 1, 2, 3, 4, 5, 6, 7]);
-            var audioIndex = 0; // This will be used to iterate over the audioSequence array
-            var sessionKey = audioSequence.map(n => n + 1).join(''); // Adding 1 to match the file names
-            var sessionKeyElement = document.getElementById('session-key');
-            var audioTitle = document.getElementById('audio-title');
-            var audioPlayer = document.getElementById('audio-player');
-            var audioSource = document.getElementById('audio-source');
-            var speakerImage = document.getElementById('speaker-image');
-            var prevButton = document.getElementById('prev-button');
-            var nextButton = document.getElementById('next-button');
-    
-            // Update the session key display
-            sessionKeyElement.textContent = sessionKey;
-    
-            // Copy button event listener
-            document.getElementById('copy-button').addEventListener('click', function() {
-                copyToClipboard(sessionKeyElement.textContent);
-            });
-    
-            // Update the audio player and speaker image based on the session key
-            function updateAudioPlayer() {
-                var audioFileIndex = audioSequence[audioIndex];
-                audioSource.src = 'Resources/' + audioFileIndex + '.mp3';
-                speakerImage.src = 'Resources/' + audioFileIndex + '.png';
-                audioTitle.textContent = 'Listen to Audio ' + (audioIndex + 1);
-                audioPlayer.load();
-            }
-    
-            // Initialize the audio player with the first audio file
-            updateAudioPlayer();
-    
-            // Event listeners for next and previous buttons
-            prevButton.addEventListener('click', function() {
-                if (audioIndex > 0) {
-                    audioIndex--;
-                    updateAudioPlayer();
-                    nextButton.disabled = false;
+        
+            document.addEventListener('DOMContentLoaded', function() {
+                // Mappings for speaker codes to gender and country
+                const speakerMapping = {
+                    a: 'FF', // Female, French
+                    b: 'MF', // Male, French
+                    c: 'FS', // Female, Spanish
+                    d: 'MS', // Male, Spanish
+                    e: 'FC', // Female, Canadian
+                    f: 'MC', // Male, Canadian
+                    g: 'FM', // Female, American
+                    h: 'MM'  // Male, American
+                };
+        
+                // Generate random session key for texts and speakers
+                var textSequence = shuffle([0, 1, 2, 3, 4, 5, 6, 7]);
+                var speakerSequence = shuffle(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
+        
+                // Create session key from shuffled sequences
+                var sessionKey = textSequence.map(i => i.toString()).join('') + speakerSequence.join('');
+                var sessionKeyElement = document.getElementById('session-key');
+                sessionKeyElement.textContent = sessionKey;
+        
+                var audioIndex = 0;
+                function updateAudioPlayer() {
+                    var currentText = textSequence[audioIndex] + 1; // Text number (add 1 for filename)
+                    var currentSpeakerChar = speakerSequence[audioIndex];
+                    var speakerCode = speakerMapping[currentSpeakerChar];
+        
+                    var audioFileName = `${currentText}${speakerCode}.mp3`;
+                    var audioSource = document.getElementById('audio-source');
+                    var speakerImage = document.getElementById('speaker-image');
+                    var audioTitle = document.getElementById('audio-title');
+        
+                    audioSource.src = `Resources/${audioFileName}`;
+                    speakerImage.src = `Resources/${currentSpeakerChar}.png`; // Update if you have specific images per speaker
+                    audioTitle.textContent = `Listen to Audio ${audioIndex + 1}`;
+        
+                    var audioPlayer = document.getElementById('audio-player');
+                    audioPlayer.load();
                 }
-                if (audioIndex === 0) {
-                    prevButton.disabled = true;
-                }
+        
+                // Initial audio setup
+                updateAudioPlayer();
+        
+                // Button controls for navigation
+                var prevButton = document.getElementById('prev-button');
+                var nextButton = document.getElementById('next-button');
+        
+                prevButton.addEventListener('click', function() {
+                    if (audioIndex > 0) {
+                        audioIndex--;
+                        updateAudioPlayer();
+                        nextButton.disabled = false;
+                    }
+                    prevButton.disabled = audioIndex === 0;
+                });
+        
+                nextButton.addEventListener('click', function() {
+                    if (audioIndex < 7) { // Limit to 8 audios
+                        audioIndex++;
+                        updateAudioPlayer();
+                        prevButton.disabled = false;
+                    }
+                    nextButton.disabled = audioIndex === 7;
+                });
+        
+                // Copy session key function
+                document.getElementById('copy-button').addEventListener('click', function() {
+                    navigator.clipboard.writeText(sessionKey).then(function() {
+                        alert('Session key copied to clipboard!');
+                    }, function(err) {
+                        alert('Error copying the session key. Please try again.');
+                    });
+                });
             });
-    
-            nextButton.addEventListener('click', function() {
-                if (audioIndex < audioSequence.length - 1) {
-                    audioIndex++;
-                    updateAudioPlayer();
-                    prevButton.disabled = false;
-                }
-                if (audioIndex === audioSequence.length - 1) {
-                    nextButton.disabled = true;
-                }
-            });
-        });
-    </script>
-
-</body>
+        </script>        
+    </body>
 </html>
